@@ -15,8 +15,7 @@ export default function Keyboard({ onKeyPress }:{onKeyPress:(key:string)=>void})
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const key = event.key;
-      if (key == 'Enter' || key == 'Backspace' || /^[a-zA-Z]$/.test(key)) {
-        // event.preventDefault();
+      if (key == 'Enter' || key == 'Backspace' || /^[a-zA-Z]$/.test(key)) {        
         onKeyPress(key.toUpperCase());
       }
     };
@@ -25,7 +24,7 @@ export default function Keyboard({ onKeyPress }:{onKeyPress:(key:string)=>void})
   }, [onKeyPress]);
 
   return (
-    <div className='flex flex-col gap-2 pt-0 pb-0 pl-2 pr-2 min-w-[50%] max-w-[60%] justify-center'>
+    <div className='flex flex-col gap-1 pt-0 pb-0 pl-2 pr-2 min-w-[50%] max-w-[60%] justify-center'>
       {KEYBOARD_ROWS.map((row, rowIndex) => {
         return (
           <div
@@ -36,7 +35,7 @@ export default function Keyboard({ onKeyPress }:{onKeyPress:(key:string)=>void})
               <button
                 key={key}
                 onClick={() => handleClick(key)}
-                className={`items-center justify-center rounded-md p-2 font-bold border-0 h-[58px] cursor-pointer text-white flex-1 ${
+                className={`items-center justify-center rounded-md p-1 font-bold border-0 h-9 cursor-pointer text-white flex-1 ${
                   key === 'Backspace' || key === 'Enter'
                     ? 'bg-red-800 w-[90px]'
                     : 'bg-green-800'

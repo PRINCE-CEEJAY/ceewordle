@@ -30,7 +30,7 @@ export default function Grid({ guesses, currentGuess }: GRID_PROPS) {
                   return (
                     <div
                       key={rowIndex - colIndex}
-                      className='flex justify-center items-center w-16 h-16 border-[#636569] border-2 font-bold text-3xl uppercase rounded-xl'
+                      className='flex justify-center items-center w-12 h-12 border-[#636569] border-2 font-bold text-3xl uppercase rounded-xl'
                     >
                       {letter}
                     </div>
