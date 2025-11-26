@@ -165,8 +165,10 @@
   border: 2px solid black;
   font-size: xx-large;
   text-transform: uppercase;
-  background: black;
+  background: var(--secondary);
+  color: var(--primary);
   border-radius: 10px;
+  transition: background-color 0.15s ease-in-out;
 }
 /* Wordle */
 .cell-correct {
@@ -182,14 +184,28 @@
   border-color: #3a3a3c;
 }
 .cell:not(:empty) {
-  animation: pop 0.1s ease;
+  animation: pop 0.1s ease-in-out;
 }
+
+.keyboard-key-correct {
+  background-color: green;
+  border-color: green;
+}
+.keyboard-key-present {
+  background-color: yellow;
+  border-color: yellow;
+}
+.keyboard-key-absent {
+  background-color: #3a3a3c;
+  border-color: #3a3a3c;
+}
+
 @keyframes pop {
   0% {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);

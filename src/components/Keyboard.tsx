@@ -10,12 +10,12 @@ const KEYBOARD_ROWS = [
 export default function Keyboard({ onKeyPress, keyboardStates }: KEY_PRESS) {
   const handleClick = (key: string) => {
     onKeyPress(key.toUpperCase());
-    console.log(key)
+    console.log(key);
   };
   useEffect(() => {
     const handleKeyDown = (event: KeyboardEvent) => {
       const key = event.key;
-      if (key == 'Enter' || key == 'Backspace' || /^[a-zA-Z]$/.test(key)) {        
+      if (key == 'Enter' || key == 'Backspace' || /^[a-zA-Z]$/.test(key)) {
         onKeyPress(key.toUpperCase());
       }
     };
@@ -31,19 +31,23 @@ export default function Keyboard({ onKeyPress, keyboardStates }: KEY_PRESS) {
             key={rowIndex}
             className='flex justify-center gap-1.5 w-full'
           >
-            {row.map((key) => (
-              <button
-                key={key}
-                onClick={() => handleClick(key)}
-                className={`items-center justify-center rounded-md p-1 font-bold border-0 h-9 cursor-pointer text-white flex-1 ${
-                  key === 'Backspace' || key === 'Enter'
-                    ? 'bg-red-800 w-[90px]'
-                    : 'bg-green-800'
-                }`}
-              >
-                {key === 'Backspace' ? <Delete /> : key}
-              </button>
-            ))}
+            {row.map((key) => {
+              const states =
+                key.length === 1 ? keyboardStates[key.toLowerCase()] : '';
+              return (
+                <button
+                  key={key}
+                  onClick={() => handleClick(key)}
+                  className={`items-center justify-center rounded-md p-1 font-bold border-0 h-9 cursor-pointer flex-1 bg-black/50 ${
+                    key === 'Backspace' || key === 'Enter'
+                      ? 'bg-red-800 w-[90px]'
+                      : `keyboard-key-${states}`
+                  }  `}
+                >
+                  {key === 'Backspace' ? <Delete /> : key}
+                </button>
+              );
+            })}
           </div>
         );
       })}
