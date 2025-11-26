@@ -3,7 +3,7 @@ import { getLetterState } from '../lib/utils';
 const rows = 6;
 const cols = 5;
 
-export default function Grid({ guesses, currentGuess, solution }: GRID_PROPS) {
+export default function Grid({ guesses, currentGuess, solution }: GRID_PROPS) {  
   const allGuesses = [...guesses];
   if (currentGuess) {
     allGuesses.push(currentGuess);

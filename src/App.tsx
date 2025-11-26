@@ -1,15 +1,32 @@
 import Grid from './components/Grid';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Keyboard from './components/Keyboard';
 import Message from './components/Message';
 import { getKeyboardStates } from './lib/utils';
 export default function App() {
-  const [guesses, setGuesses] = useState<string[]>(['Trees']);
+  const [guesses, setGuesses] = useState<string[]>([]);
   const [currentGuess, setCurrentGuess] = useState('');
-  const [solution, setSolution] = useState('trees');
+  const [solution, setSolution] = useState('');
   const [message, setMessage] = useState('');
   const [hint, setHint] = useState('');
 
+  useEffect(() => {
+    async function fetchWord() {
+      try {
+        const endPoint = 'https://random-word-api.herokuapp.com/word?length=5';
+        const response = await fetch(endPoint);
+        const [word]: string[] = await response.json();
+        setSolution(word);
+      } catch (error) {
+        console.log('Error:', error);
+        setSolution('ninja');
+      }
+    }
+    fetchWord();
+  }, []);
+  setTimeout(() => {
+    console.log(solution);
+  }, 1500);
   function showMessage(text: string) {
     setMessage(text);
     setTimeout(() => {
@@ -35,7 +52,6 @@ export default function App() {
   }
   console.log(currentGuess);
   const keyboardStates = getKeyboardStates(guesses, solution);
-  console.log(keyboardStates);
   return (
     <div className='flex flex-col justify-center items-center dark'>
       {message ||

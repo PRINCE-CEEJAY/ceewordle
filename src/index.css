@@ -167,7 +167,7 @@
   text-transform: uppercase;
   background: var(--secondary);
   color: var(--primary);
-  border-radius: 10px;
+  border-radius: 15px;
   transition: background-color 0.15s ease-in-out;
 }
 /* Wordle */

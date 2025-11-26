@@ -29,7 +29,7 @@ export default function Keyboard({ onKeyPress, keyboardStates }: KEY_PRESS) {
         return (
           <div
             key={rowIndex}
-            className='flex justify-center gap-1.5 w-full'
+            className='flex justify-center items-center gap-1.5 w-full'
           >
             {row.map((key) => {
               const states =
