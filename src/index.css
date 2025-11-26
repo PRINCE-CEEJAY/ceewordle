@@ -156,3 +156,15 @@
     @apply bg-background text-foreground;
   }
 }
+.correct {
+  background-color: green;
+  border-color: green;
+}
+.present {
+  background-color: yellow;
+  border-color: yellow;
+}
+.absent {
+  background-color: gray;
+  border-color: gray;
+}

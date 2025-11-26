@@ -7,7 +7,7 @@ const KEYBOARD_ROWS = [
   ['Enter', 'Z', 'X', 'C', 'V', 'B', 'N', 'M', 'Backspace'],
 ];
 
-export default function Keyboard({ onKeyPress }: KEY_PRESS) {
+export default function Keyboard({ onKeyPress, keyboardStates }: KEY_PRESS) {
   const handleClick = (key: string) => {
     onKeyPress(key.toUpperCase());
     console.log(key)
