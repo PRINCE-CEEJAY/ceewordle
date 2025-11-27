@@ -5,6 +5,7 @@ import Message from './components/Message';
 import { getKeyboardStates } from './lib/utils';
 import words from './assets/words.json';
 import Hint from './components/Hint';
+import GameOver from './components/game-over-modal';
 
 export default function App() {
   const [guesses, setGuesses] = useState<string[]>([]);
@@ -36,7 +37,6 @@ export default function App() {
         const response = await fetch(`/api/${solution}`);
         const responseData = await response.json();
         const definition = responseData.entries[0].senses[0].definition;
-        console.log(definition);
         setHint(definition);
       } catch (error) {
         console.log('Error:', error);
@@ -57,6 +57,7 @@ export default function App() {
   function handleKeys(key: string) {
     if (guesses.length === 6) {
       showMessage('You are out of guesses!');
+      setIsGameOver(true)
       return;
     }
     if (key === 'ENTER') {
@@ -70,7 +71,6 @@ export default function App() {
         setCurrentGuess('');
       }
     } else if (key === 'BACKSPACE') {
-      showMessage('backspace pressed');
       setCurrentGuess((prev) => prev.slice(0, -1));
     } else if (currentGuess.length < 5) {
       setCurrentGuess((prevGuess) => prevGuess + key.toLocaleLowerCase());
@@ -83,6 +83,7 @@ export default function App() {
   }, 1200);
 
   return (
+    <>
     <div className='flex flex-col justify-center items-center dark'>
       {hint && <Hint hint={hint}/>}
       <Grid
@@ -97,5 +98,7 @@ export default function App() {
         isGameOver={isGameOver}
       />
     </div>
+    {isGameOver &&  <GameOver/> }
+    </>
   );
 }
